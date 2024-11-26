@@ -1,0 +1,3 @@
+FaceInputAuth/models/*
+FaceInputAuth/sample_images/*
+FaceInputAuth/aws_keys.py
