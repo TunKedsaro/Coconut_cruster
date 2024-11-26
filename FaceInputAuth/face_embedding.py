@@ -4,23 +4,26 @@ import cv2
 import numpy as np
 import boto3
 import aws_keys
+import time
 class FaceModel:
     def __init__(self):
-        # self.session = ort.InferenceSession(embedding_model_path)
-
-        s3 = boto3.client(
-            "s3",
-            region_name           = aws_keys.AWS_DEFAULT_REGION,
-            aws_access_key_id     = aws_keys.AWS_ACCESS_KEY_ID,
-            aws_secret_access_key = aws_keys.AWS_SECRET_ACCESS_KEY
-            )
-        # w600k_r50.onnx
-        response = s3.get_object(
-            Bucket = "model-test-211124-0920",
-            Key = "w600k_r50.onnx"
-        )
-        face_embedding_Bytes = response['Body'].read()
-        self.session = ort.InferenceSession(face_embedding_Bytes)
+        st = time.time()
+        self.session = ort.InferenceSession(r"C:\Users\Acer\Desktop\Coconut_cruster\FaceInputAuth\models\w600k_r50.onnx")
+        # s3 = boto3.client(
+        #     "s3",
+        #     region_name           = aws_keys.AWS_DEFAULT_REGION,
+        #     aws_access_key_id     = aws_keys.AWS_ACCESS_KEY_ID,
+        #     aws_secret_access_key = aws_keys.AWS_SECRET_ACCESS_KEY
+        #     )
+        # # w600k_r50.onnx
+        # response = s3.get_object(
+        #     Bucket = "model-test-211124-0920",
+        #     Key = "w600k_r50.onnx"
+        # )
+        # face_embedding_Bytes = response['Body'].read()
+        # self.session = ort.InferenceSession(face_embedding_Bytes)
+        ed = time.time()
+        print("load_model from s3:",ed-st)
 
     def preprocess_image(self, img_input):
         # Check if the input is a file path (string) or a NumPy array (image)

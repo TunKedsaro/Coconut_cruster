@@ -1,3 +1,5 @@
+import time
+
 from input_image import InputImage
 from crop_face import FacePreprocessor
 import cv2
@@ -30,10 +32,10 @@ from face_embedding import FaceModel
 
 # print(embedding)
 
-
 from fastapi import FastAPI, File, UploadFile
 import numpy as np
 import cv2
+
 
 app = FastAPI()
 
@@ -41,6 +43,7 @@ app = FastAPI()
 async def create_upload_file(
     file : UploadFile = File(...)
 ):
+    print("x"*1000)
     # input image
     contents = await file.read()
     nparr = np.frombuffer(contents, np.uint8)
@@ -53,18 +56,24 @@ async def create_upload_file(
     Nw = int(w*Fct)
     img = cv2.resize(img, (Nw,Nh))
 
+
     bbox, landmarks = InputImage(img)
+
 
     preprocessor = FacePreprocessor(image_size='112,112',margin=44)
     nimg = preprocessor.preprocess(img,bbox,landmarks)
 
-    print("x"*1000)
+    # ช้า
+    st = time.time()
     face_model = FaceModel()
-
+    ed = time.time()                                                    #                 
+    print("01:",ed-st)
+    
     prep_img = face_model.preprocess_image(nimg)
     embedding = face_model.get_embedding(prep_img).reshape(1,-1)
 
 
+    print("x"*1000)
     result = {
         "Embedding_vector": embedding.tolist()
     }

@@ -2,6 +2,7 @@
 from skimage import transform as trans
 import cv2
 import numpy as np
+import time
 
 class FacePreprocessor:
     def __init__(self,image_size='112,112',margin=44):
