@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  dev:
+    container_name: FaceInputAuth
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+      - ./models:/app/models
+    ports:
+      - "3010:3010"        
+    networks:
+      - sale_net
+    command: uvicorn api:app --host 0.0.0.0 --port 3010 --reload
+    restart: unless-stopped
+
+networks:
+  sale_net:
+    driver: bridge

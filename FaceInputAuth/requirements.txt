@@ -1,0 +1,12 @@
+fastapi
+python-multipart
+opencv-python
+onnxruntime
+mtcnn
+tensorflow
+matplotlib
+scikit-image
+scikit-learn
+uvicorn
+keras
+numpy

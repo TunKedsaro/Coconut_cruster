@@ -2,13 +2,13 @@
 import onnxruntime as ort
 import cv2
 import numpy as np
-import boto3
-import aws_keys
+# import boto3
+# import aws_keys
 import time
 class FaceModel:
     def __init__(self):
         st = time.time()
-        self.session = ort.InferenceSession(r"C:\Users\Acer\Desktop\Coconut_cruster\FaceInputAuth\models\w600k_r50.onnx")
+        self.session = ort.InferenceSession("/app/models/w600k_r50.onnx")
         # s3 = boto3.client(
         #     "s3",
         #     region_name           = aws_keys.AWS_DEFAULT_REGION,
