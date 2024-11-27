@@ -9,8 +9,8 @@ proba = 0.37092414
 j = 27
 
 # Load label
-embeddings = r"C:\Users\Acer\Desktop\Coconut_cruster\CosinePickle\models\embeddings_datasets.pickle"
-le = r"C:\Users\Acer\Desktop\Coconut_cruster\CosinePickle\models\le.pickle"
+embeddings = "./models/embeddings_datasets.pickle"
+le = "./models/le.pickle"
 
 # Load pickle file
 with open(embeddings,"rb") as f:
