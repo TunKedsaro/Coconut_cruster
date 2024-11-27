@@ -1,3 +1,4 @@
 FaceInputAuth/models/*
 FaceInputAuth/sample_images/*
 FaceInputAuth/aws_keys.py
+ClassPrediction/aws_keys.py
